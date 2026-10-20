@@ -1,6 +1,6 @@
-# 三界共語 · 展示版 SHOWCASE
+# 三界共語 Interspecies Dialogue · 展示版 SHOWCASE
 
-《三界共語》網站的展示版：即時著色器、隨聲音反應的畫面與捲動敘事。內容與極簡版相同，說法不同。
+《三界共語》（Interspecies Dialogue）網站的展示版：即時著色器、隨聲音反應的畫面與捲動敘事。內容與極簡版相同，說法不同。
 
 ## 結構
 
@@ -11,7 +11,7 @@ js/main.js          載入、首屏氣孔場、捲動敘事、章節撕裂轉場
 js/field.js         全螢幕 WebGL 氣孔場（手寫著色器，Voronoi 表皮 + 保衛細胞）
 js/audio.js         單一音訊元素 + Web Audio AnalyserNode
 js/sections.js      顯微鏡捲動、影像膠卷、雙投影牆、魔幻收錄區、時辰錶盤、只讀一次的信
-js/sculpture.js     200 段紀錄的三維資料雕塑（three.js，instanced）
+js/sculpture.js     精選 200 段紀錄的三維資料雕塑（three.js，instanced）
 js/ridge.js         55 段開口標註的呼吸山脊線（three.js）
 js/deck.js          聲音視覺化（頻譜地形 + 頻譜氣孔）與曲目
 js/carousel.js      AIGC 動畫的 WebGL 拖曳輪播
@@ -27,10 +27,10 @@ assets/             影像、聲音與圖片（皆已移除中繼資料）
 2. Settings → Pages → Source 選 `main` 分支的 `/ (root)`。
 3. 所有路徑都是相對路徑，放在 `https://<帳號>.github.io/<repository>/` 底下即可運作；`.nojekyll` 已附上。
 
-## 發佈前要改的地方
+## 網址與分享預覽圖
 
-- **網址**：本站 https://handcollab.github.io/three-realms-showcase/ ；極簡版 https://handcollab.github.io/three-realms/
-- **分享預覽圖**：`og:image` 目前是相對路徑 `assets/og.jpg`；部分社群平台需要完整網址。
+- **網址**：本站 https://handcollab.github.io/interspecies-dialogue-showcase/ ；極簡版 https://handcollab.github.io/interspecies-dialogue/
+- **分享預覽圖**：`og:image`、`og:url` 與 `twitter:image` 已寫成上面本站網址的完整路徑；repository 改名或換網域時要一起改。
 
 ## 無障礙與效能
 

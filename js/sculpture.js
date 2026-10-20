@@ -1,4 +1,4 @@
-// 200 experiments as 200 breathing stomata in 3D (three.js, one instanced draw call).
+// the 200 curated sessions as 200 breathing stomata in 3D (three.js, one instanced draw call).
 import * as THREE from 'three';
 import { $, $$, clamp, damp, mq, onFrame, visible } from './util.js';
 import { GROUPS, GROUP_ORDER, PLANTS_DISPLAY } from './const.js';

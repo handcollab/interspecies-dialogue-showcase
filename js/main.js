@@ -55,7 +55,7 @@ const pctEl = $('[data-loader-pct]'), magEl = $('[data-loader-mag]'), smpEl = $(
 function finishLoad() {
   if (loadState.done) return;
   loadState.done = true;
-  loader.classList.add('is-done');
+  if (loader) loader.classList.add('is-done');
   document.body.classList.remove('is-loading');
   if (field) { field.target.iris = 2.0; field.target.blur = 0; }
   heroIntro();
@@ -66,6 +66,8 @@ setTimeout(() => { loadState.target = 1; }, 1800); // never block on a slow CDN,
 let loadLast = performance.now();
 onFrame(() => {
   if (loadState.done) return;
+  // the inline 7 s fail-safe in index.html may already have removed the loader on a very slow network
+  if (!pctEl || !loader) { finishLoad(); return; }
   // wall-clock step (the frame loop clamps dt to 0.1 s, which stretched the loader on slow first frames)
   const now = performance.now(), step = Math.min(0.5, (now - loadLast) / 1000); loadLast = now;
   loadState.p = Math.min(loadState.target, loadState.p + step * (REDUCED ? 10 : 1.25));

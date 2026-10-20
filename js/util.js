@@ -18,6 +18,7 @@ export function fmtTime(s) {
   return `${m}:${String(r).padStart(2, '0')}`;
 }
 export function fmtMS(s) {
+  if (!Number.isFinite(s)) return '--:--';   // frames not loaded yet
   const m = Math.floor(s / 60), r = Math.floor(s % 60);
   return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`;
 }

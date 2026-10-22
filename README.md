@@ -42,10 +42,10 @@ assets/             影像、聲音與圖片（皆已移除中繼資料）
 
 ## 隱私
 
-實驗影像、聲音與實驗紀錄不呈現參與者的面孔、身體與聲音；製作名單依官方 Credit List 具名。姓名只出現在網頁的「製作名單 CREDITS」段落，不出現在實驗影像的說明、替代文字、`data/` 的資料檔或 `data/README.md`。有人聲的實驗影片一律靜音；口述內容只摘要事實。所有圖片與影片都已移除中繼資料。
+實驗影像、聲音與實驗紀錄不呈現參與者的面孔、身體與聲音；製作名單依官方 Credit List 與團隊提供的名單具名。姓名只出現在網頁的「製作名單 CREDITS」段落，不出現在實驗影像的說明、替代文字、`data/` 的資料檔或 `data/README.md`。有人聲的實驗影片一律靜音；口述內容只摘要事實。所有圖片與影片都已移除中繼資料。
 
-Experiment footage, sound and records show no participant's face, body or voice; the credits name people as listed in the official Credit List. Names appear only in the CREDITS section of the page.
+Experiment footage, sound and records show no participant's face, body or voice; the credits name people as listed in the official Credit List and the list supplied by the team. Names appear only in the CREDITS section of the page.
 
 ## 製作名單
 
-`index.html` 的「製作名單 CREDITS」段落照錄官方 Credit List（二部曲《脈動森林》表演、三部曲《氣孔低語 Stoma Whisperer》展覽），逐字不改寫、不翻譯、不調整順序。每一行「職稱：姓名」在網頁上仍是同一行文字，複製出來與原文相同；改名單時請整段替換，不要只改顯示樣式。
+`index.html` 的「製作名單 CREDITS」段落依序列出首部曲《出芽》展覽、二部曲《脈動森林》表演、三部曲《氣孔低語 Stoma Whisperer》展覽。二部曲與三部曲照錄官方 Credit List，逐字不改寫、不翻譯、不調整順序；首部曲依團隊提供的名單，比照同樣的稱謂與寫法整理。每一行「職稱：姓名」在網頁上仍是同一行文字，複製出來與原文相同；改名單時請整段替換，不要只改顯示樣式。

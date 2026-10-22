@@ -182,10 +182,36 @@ function initLenis() {
     if (window.ScrollTrigger) lenis.on('scroll', window.ScrollTrigger.update);
   } catch (e) { console.warn('lenis', e); lenis = null; }
 }
-function scrollToEl(el, moveFocus = true) {
-  if (!el) return;
+// The page can still grow above the target while a jump is running (sections settling on a cold load),
+// and a smooth scroll keeps the target it computed at the start, so it can stop short. Once the scroll
+// has come to rest, re-aim at the target (at most twice). Any user input cancels the correction.
+let jumpTok = 0;
+for (const t of ['wheel', 'touchstart', 'keydown']) addEventListener(t, () => { jumpTok++; }, { passive: true });
+function aimAt(el) {
   if (lenis) lenis.scrollTo(el, { offset: 0, duration: 1.6 });
   else el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+}
+function settleOn(el, tok) {
+  let tries = 0, lastY = NaN, still = 0, t0 = performance.now();
+  const check = () => {
+    if (tok !== jumpTok) return;
+    const y = window.scrollY;
+    if (Math.abs(y - lastY) < 1) still++; else { still = 0; lastY = y; }
+    if (still < 3 && performance.now() - t0 < 6000) { setTimeout(check, 120); return; }
+    const off = el.getBoundingClientRect().top;
+    const atEnd = y >= document.documentElement.scrollHeight - innerHeight - 1;
+    if (Math.abs(off) > 2 && !(off > 0 && atEnd) && tries < 2) {
+      tries++; still = 0; lastY = NaN; t0 = performance.now();
+      aimAt(el); setTimeout(check, 200);
+    }
+  };
+  setTimeout(check, 200);
+}
+function scrollToEl(el, moveFocus = true) {
+  if (!el) return;
+  const tok = ++jumpTok;
+  aimAt(el);
+  settleOn(el, tok);
   // move keyboard focus with the jump (skip link, nav), without a second scroll
   if (moveFocus) {
     if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
@@ -331,8 +357,9 @@ if (!REDUCED && 'IntersectionObserver' in window) {
       io.unobserve(el);
     }
   }, { rootMargin: '0px 0px -8% 0px' });
-  $$('.reveal').forEach((el) => io.observe(el));
-} else { $$('.reveal').forEach((el) => el.classList.add('is-in')); }
+  // .draw = decoration-only reveal (e.g. credit hairlines): the text is never hidden
+  $$('.reveal, .draw').forEach((el) => io.observe(el));
+} else { $$('.reveal, .draw').forEach((el) => el.classList.add('is-in')); }
 
 // count-up stats
 for (const el of $$('.stat b[data-count]')) {

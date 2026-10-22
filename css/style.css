@@ -667,11 +667,42 @@ section { position: relative; }
 
 /* ---------- CREDITS ---------- */
 .credits { padding: 10vh 0 10vh; --accent: var(--lime); }
-.roles { border-top: 1px solid var(--line); margin-bottom: 80px; }
-.role-row { display: grid; grid-template-columns: 170px 120px 1fr; gap: 6px 20px; padding: 16px 0; border-bottom: 1px solid var(--line-soft); align-items: baseline; }
-.role-row > span.mono { font-size: 10px; letter-spacing: .18em; color: var(--faint); }
-.role-row b { font-weight: 500; }
-.role-row small { grid-column: 3; color: var(--dim); font-size: 13px; }
+/* official Credit List, copied verbatim: each role line stays ONE line of text (innerText / copy-paste),
+   so dt/dd are inline-level and the zh/en split is drawn with a generated line break only */
+.cr-wrap { max-width: 960px; }
+.cr-list { margin: 34px 0 0; }
+/* soft scrim: bright cell walls of the live field must not pass right behind the small role labels */
+.cr-list, .cr-note { position: relative; isolation: isolate; }
+.cr-list::before, .cr-note::before { content: ''; position: absolute; z-index: -1; inset: -12px calc(var(--gut) * -.6); pointer-events: none;
+  background: rgba(9,9,9,.7); box-shadow: 0 0 56px 28px rgba(9,9,9,.7); border-radius: 24px; }
+.cr-prod { padding: 30px 0 4px; border-top: 1px solid var(--line); }
+.cr-prod + .cr-prod { margin-top: 72px; }
+.cr-amber { --accent: var(--amber); }
+.cr-lime { --accent: var(--lime); }
+.cr-title { font-size: clamp(22px, 2.9vw, 32px); font-weight: 600; line-height: 1.45; letter-spacing: .04em; margin: 0 0 14px; text-wrap: balance; }
+.cr-meta { margin: 0 0 6px; display: grid; gap: 2px; font-size: 14px; line-height: 1.75; }
+.cr-meta dt, .cr-meta dd { display: inline; margin: 0; }
+.cr-meta dt { color: var(--dim); }
+.cr-meta dd { color: var(--ink); }
+.cr-gh { display: flex; align-items: center; gap: 14px; margin: 42px 0 2px; font-size: 12.5px; font-weight: 500; letter-spacing: .24em; line-height: 1.6; color: var(--accent); }
+.cr-gh::after { content: ''; flex: 1; height: 1px; background: var(--line); transform-origin: 0 50%; }
+/* only the hairline animates; the text itself is never hidden */
+.js .cr-gh.draw::after { transform: scaleX(0); }
+.js .cr-gh.draw.is-in::after { transform: none; transition: transform 1.4s var(--ease) .1s; }
+.no-motion .cr-gh.draw::after { transform: none !important; }
+.cr-roles { margin: 0; }
+.cr-row { padding: 12px 0; border-bottom: 1px solid var(--line-soft); }
+.cr-row:last-child { border-bottom: 0; }
+.cr-row dt, .cr-row dd { display: inline-block; vertical-align: top; margin: 0; }
+.cr-row dt { width: 46%; padding-right: 28px; font-size: 14px; line-height: 1.6; color: var(--dim); }
+.cr-row dd { width: 54%; font-size: 16px; line-height: 1.7; font-weight: 400; color: var(--ink); }
+.cr-en { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--dim); }
+.cr-en::before { content: '\A'; white-space: pre; }
+.cr-c { color: var(--dim); }
+.cr-n { display: inline-block; }
+.cr-note { margin: 44px 0 0; max-width: 46em; }
+.credits .about { margin-top: 96px; }
+.privacy .en-inline { display: block; font-size: 12.5px; color: var(--faint); }
 .versions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0 30px; }
 .ver { display: grid; gap: 4px; padding: 22px; border: 1px solid var(--line); border-radius: 3px; text-decoration: none; background: rgba(9,9,9,.85); transition: border-color .3s; }
 a.ver:hover { border-color: var(--lime); }
@@ -822,8 +853,11 @@ a.ver:hover { border-color: var(--lime); }
   .rules { grid-template-columns: 1fr; }
   .pipe ol { grid-template-columns: 1fr 1fr; }
   .princ > div { grid-template-columns: 1fr; gap: 6px; }
-  .role-row { grid-template-columns: 1fr; }
-  .role-row small { grid-column: auto; }
+  .cr-prod + .cr-prod { margin-top: 56px; }
+  .cr-gh { margin-top: 32px; }
+  .cr-row dt, .cr-row dd { width: 100%; }
+  .cr-row dt { padding-right: 0; margin-bottom: 3px; }
+  .cr-row dd { font-size: 15.5px; }
   .glossary dl { grid-template-columns: 1fr; }
   .dock-spec { display: none; }
   .dock-meta b { max-width: 52vw; }

@@ -15,6 +15,7 @@ js/sculpture.js     精選 200 段紀錄的三維資料雕塑（three.js，insta
 js/ridge.js         55 段開口標註的呼吸山脊線（three.js）
 js/deck.js          聲音視覺化（頻譜地形 + 頻譜氣孔）與曲目
 js/carousel.js      AIGC 動畫的 WebGL 拖曳輪播
+js/thefilm.js       「作品影片」：點一下才載入的 YouTube 播放器（youtube-nocookie.com），與站內聲音互斥
 data/               公開資料（experiments / annotations，CSV 與 JSON）與網站用的 site.json
 assets/             影像、聲音與圖片（皆已移除中繼資料）
 ```
@@ -29,7 +30,8 @@ assets/             影像、聲音與圖片（皆已移除中繼資料）
 
 ## 網址與分享預覽圖
 
-- **網址**：本站 https://handcollab.github.io/interspecies-dialogue-showcase/ ；極簡版 https://handcollab.github.io/interspecies-dialogue/
+- **網址**：本站 https://handcollab.github.io/interspecies-dialogue-showcase/ ；極簡版 https://handcollab.github.io/interspecies-dialogue/ ；英文展示版 https://handcollab.github.io/interspecies-dialogue-showcase-en/（頂端列的「中 | EN」、頁尾與「關於本站」都連過去）
+- **作品影片**：影像章節開頭嵌入《三界共語》作品影片（YouTube `H9dKvSVsPyA`，製作團隊的官方頻道）。封面用本站自己的顯微影像 `assets/works/loops/f3-loop-01-poster.webp`；按下播放前不向 YouTube 發出任何請求。
 - **分享預覽圖**：`og:image`、`og:url` 與 `twitter:image` 已寫成上面本站網址的完整路徑；repository 改名或換網域時要一起改。
 
 ## 無障礙與效能
@@ -38,11 +40,12 @@ assets/             影像、聲音與圖片（皆已移除中繼資料）
 - 不支援 WebGL 時，首屏改用靜態顯微照片；3D 圖表會顯示說明文字，資料仍可下載。
 - 氣孔場依實際幀時間自動調整解析度；被不透明區塊蓋住時停止繪製。
 - 影片一律延遲載入，進入視窗才播放、離開即暫停。
+- 作品影片的封面是 `<button>`（滑鼠、Tab + Enter／Space 都能播放），播放器載入後焦點移進播放器；同一時間只有一個聲音：作品影片開始時，底部播放器與有聲影片會暫停，反之亦然。
 - 封面圖、3D 場景（資料雕塑、標註山脊線、聲音視覺化、AIGC 輪播）與 three.js 都在接近視窗時才載入；字型以不阻擋首屏的方式載入。
 
 ## 隱私
 
-實驗影像、聲音與實驗紀錄不呈現參與者的面孔、身體與聲音；製作名單依官方 Credit List 與團隊提供的名單具名。姓名只出現在網頁的「製作名單 CREDITS」段落，不出現在實驗影像的說明、替代文字、`data/` 的資料檔或 `data/README.md`。有人聲的實驗影片一律靜音；口述內容只摘要事實。所有圖片與影片都已移除中繼資料。
+實驗影像、聲音與實驗紀錄不呈現參與者的面孔、身體與聲音；製作名單依官方 Credit List 與團隊提供的名單具名。姓名只出現在網頁的「製作名單 CREDITS」段落，不出現在實驗影像的說明、替代文字、`data/` 的資料檔或 `data/README.md`。有人聲的實驗影片一律靜音；口述內容只摘要事實。所有圖片與影片都已移除中繼資料。「作品影片」按下播放後才從 youtube-nocookie.com 載入；整站不送 Referer，只有這個播放器送出網站的來源網址（YouTube 嵌入需要）。
 
 Experiment footage, sound and records show no participant's face, body or voice; the credits name people as listed in the official Credit List and the list supplied by the team. Names appear only in the CREDITS section of the page.
 

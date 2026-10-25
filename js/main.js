@@ -392,9 +392,10 @@ engine.addEventListener('track', () => { dockTitle.textContent = `${engine.track
 engine.addEventListener('blocked', () => toast('瀏覽器擋下了自動播放，點一下畫面開始。'));
 engine.addEventListener('mediaerror', () => toast('音檔沒有載入，請重新整理頁面再試一次。'));
 // other media with sound pause the engine (and vice versa)
+// 'film' = the YouTube film (js/thefilm.js); it pauses itself when any other sound starts
 document.addEventListener('sound:exclusive', (e) => {
   if (e.detail !== 'engine' && engine.playing) engine.pause();
-  if (e.detail === 'engine') for (const v of $$('video[data-sound-el]')) if (!v.paused) v.pause();
+  if (e.detail === 'engine' || e.detail === 'film') for (const v of $$('video[data-sound-el]')) if (!v.paused) v.pause();
 });
 document.addEventListener('play', (e) => {
   const v = e.target;

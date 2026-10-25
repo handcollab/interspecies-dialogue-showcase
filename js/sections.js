@@ -291,7 +291,7 @@ function wall(reduced) {
     btn.classList.remove('is-on');
   }
   vid.addEventListener('ended', () => { if (withSound) revert(); });
-  document.addEventListener('sound:exclusive', (e) => { if (e.detail === 'engine' && withSound) revert(); });
+  document.addEventListener('sound:exclusive', (e) => { if ((e.detail === 'engine' || e.detail === 'film') && withSound) revert(); });
 }
 
 /* ---------- videos with sound -> lightbox ---------- */
